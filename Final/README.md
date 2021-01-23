@@ -37,7 +37,9 @@ TouchLogic:260
 
 帮助界面：点击back返回
 
-游戏界面：将下方绘画组件滑块拖入中间画板
+游戏界面：
+          
+          将下方绘画组件滑块拖入中间画板
 
           在中间画板中，单击已有组件，可以进行移动，旋转，删除操作
           
@@ -75,6 +77,7 @@ SpriteKit中的组件(场景，标签，图形...)均为SKNode
 具体见GameScene.swift中imageFromCanvas函数
 
 ### 3.3 动画
+
 SpriteKit游戏中，可以任意为SKNode增加动画(SKAction)
 
 为SKNode加入一段动画(SKAction数组)之后，SKNode被加入进某parent(一般就是当前scene)后，就会自动开始进行动画
@@ -93,5 +96,56 @@ SpriteKit游戏中，可以任意为SKNode增加动画(SKAction)
 
 具体见GameScene.swift中activeDrawKits函数
 
+同时，绘画组件拖动时的“残影”效果也是由SKAction完成
+
+从touch中得到当前拖动位置，在该位置创建SKNode，使用wait,fadeOut,removeFromParent组合动画完成
+
 ### 3.4 触摸逻辑
 
+(具体代码见TouchLogic.swift)
+
+可以override多种touch函数，程序中override了touchBegin,touchMove,touchEnd
+
+分别在 开始触摸 拖动 结束触摸 时调用
+
+每一次touch开始，都会生成一个UITouch对象，该对象在touch结束时才被回收，在拖动时，可以从该对象中get到当前位置
+
+由位置，可以向scene请求得到该位置触摸在哪一个Node上，从而进行逻辑判断
+
+在touchBegin时，将touch与node绑定，加入进字典里
+
+touchMove时，根据当前位置，进行残影动画，或者进行一笔画
+
+touchEnd时，从字典中取出touch，根据当前游戏状态，处理游戏逻辑
+
+### 3.5 图形绘制与图形变换
+
+(具体代码见shapeFunction.swift)
+
+图形绘制主要使用SKShapeNode，其可以通过CGPath或CGRect等创建
+
+主要使用UIBezierPath，创建本泽尔曲线，使用moveTo,addLine,addCurve等函数绘制线段，曲线
+
+将绘制好的本泽尔曲线化为cgpath,创建SKShapeNode
+
+由于SKShapeNode可以直接进行move，移动函数相对简单
+
+而SKShapeNode的zRotation函数始终围绕(0,0)进行旋转，无法满足要求(围绕中心点旋转)
+
+所以，需要自行计算旋转中心，旋转后点坐标，然后重新绘制图形，覆盖原图形
+
+计算部分见Calculator.swift
+
+### 3.6 CoreML
+
+绘图完成后，将结果传入hw6的coreml模型，得到对应的评分结果，直接显示即可
+
+## 4.BUG、心得
+
+●未对画框边界进行判定，移动图形后可能会飘出边界，产生奇怪的结果
+
+●按钮较小，未在实机上操作过，只在xcode simulator上实验游玩过，可能实机上难以按到按钮...
+
+●未处理横屏，程序仅允许竖屏
+
+●SpriteKit框架对动画，触摸，组件等包装较为合理，易于理解，上手较为轻松，同时还提供了GameState的已包装好的状态机，可以方便控制游戏流程，只是没有用上，还是用的传统写法...
