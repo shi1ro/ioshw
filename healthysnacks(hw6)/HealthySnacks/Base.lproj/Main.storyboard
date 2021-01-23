@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HealthySnacks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uj-hZ-Sbn">
+                                <rect key="frame" x="189.5" y="488" width="35" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="confidence" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCX-sa-ASz">
+                                <rect key="frame" x="164.5" y="540" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="Urq-hK-met">
+                                <rect key="frame" x="57" y="144" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Urq-hK-met" secondAttribute="height" multiplier="1:1" id="c0z-cl-9SL"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGX-Sp-kIP">
+                                <rect key="frame" x="108" y="685" width="198" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Select photo"/>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sdr-uj-wZt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1uj-hZ-Sbn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1Ad-3M-Ibx"/>
+                            <constraint firstItem="gGX-Sp-kIP" firstAttribute="top" secondItem="wCX-sa-ASz" secondAttribute="bottom" constant="124" id="9mw-cr-3Zg"/>
+                            <constraint firstItem="wCX-sa-ASz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Aa2-dq-cTu"/>
+                            <constraint firstItem="1uj-hZ-Sbn" firstAttribute="top" secondItem="Urq-hK-met" secondAttribute="bottom" constant="44" id="BK7-pe-aGU"/>
+                            <constraint firstItem="wCX-sa-ASz" firstAttribute="top" secondItem="1uj-hZ-Sbn" secondAttribute="bottom" constant="31" id="Ded-q3-RtS"/>
+                            <constraint firstItem="gGX-Sp-kIP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="108" id="Ge9-j6-WGV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Urq-hK-met" secondAttribute="trailing" constant="57" id="MQq-Z0-f05"/>
+                            <constraint firstItem="Urq-hK-met" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="Yat-sS-uci"/>
+                            <constraint firstItem="Urq-hK-met" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="mJb-Rd-unq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gGX-Sp-kIP" secondAttribute="trailing" constant="108" id="o5X-Bx-Xe1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="confidenceLabel" destination="wCX-sa-ASz" id="Ak7-Jy-qw4"/>
+                        <outlet property="imv" destination="Urq-hK-met" id="5jH-QJ-wH8"/>
+                        <outlet property="resultLabel" destination="1uj-hZ-Sbn" id="lKc-ir-WOq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Image" width="462" height="461"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
